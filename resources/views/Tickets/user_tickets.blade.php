@@ -8,12 +8,12 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-ticket"> My Tickets</i>
+                    <i class="fa fa-ticket"> My Complaints</i>
                 </div>
  
                 <div class="panel-body">
                     @if($tickets->isEmpty())
-                        <p>You have not created any tickets.</p>
+                        <p>You have not registered any complaints.</p>
                     @else
                         <table class="table">
                             <thead>

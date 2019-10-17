@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>
-Thank you {{ ucfirst($user->name) }} for contacting our support team. A support ticket has been opened for you. You will be notified, by email, when a response is made. The details of your ticket are shown below:
+Thank you {{ ucfirst($user->name) }} for contacting Murdoch University. A complaint has been registered for you. You will be notified, by email, when a response is made. The details of your complaint are shown below:
 </p>
  
 <p>Title: {{ $ticket->title }}</p>
@@ -14,7 +14,7 @@ Thank you {{ ucfirst($user->name) }} for contacting our support team. A support 
 <p>Status: {{ $ticket->status }}</p>
  
 <p>
-You can view the ticket at any time at {{ url('tickets/'. $ticket->ticket_id) }}
+You can view this complaint at any time by following the link: {{ url('tickets/'. $ticket->ticket_id) }}
 </p>
  
 </body>

@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Register New Complaint</div>
+                <div class="panel-heading">Open Anonymous Ticket</div>
  
                 <div class="panel-body">
  
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-ticket"></i> Submit Complaint
+                                    <i class="fa fa-btn fa-ticket"></i> Open Ticket
                                 </button>
                             </div>
                         </div>

@@ -14,11 +14,11 @@
                     @if(Auth::user()->is_admin)
  
                         <p>
-                            See all <a href="{{ url('admin/tickets') }}">tickets</a>
+                            See all <a href="{{ url('admin/tickets') }}">complaints</a>
                         </p>
                     @else
  			<p>
-				See all your <a href="{{ url('my_tickets') }}">tickets</a> or <a href="{{ url('new-ticket') }}">open new ticket</a>
+				See all your <a href="{{ url('my_tickets') }}">complaints</a> or <a href="{{ url('new-ticket') }}">register a new complaint.</a>
 			</p>
 		    @endif
  		 </div>

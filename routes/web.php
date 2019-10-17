@@ -22,6 +22,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('new-ticket', 'TicketsController@create');
 
 Route::post('new-ticket', 'TicketsController@store');
+
+
+
+Route::get('anon-ticket', 'TicketsController@createAnon');
+
+Route::post('anon-ticket', 'TicketsController@storeAnon');
+
+ 
  
 Route::get('my_tickets', 'TicketsController@userTickets');
  
@@ -33,6 +41,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
 	 
 	    Route::get('tickets', 'TicketsController@index');
 	     
-	        Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
+	    Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
+		
+		Route::post('updatePriority/{ticket_id}/{priority}', 'TicketsController@updatePriority');
 	     
+		Route::post('updateCategory/{ticket_id}/{category_id}', 'TicketsController@updateCategory');
+		
+		Route::post('updateStatus/{ticket_id}/{status}', 'TicketsController@updateStatus');
 });

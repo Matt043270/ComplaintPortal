@@ -24,8 +24,10 @@
                         <p>Category: {{ $ticket->category->name }}</p>
                         <p>
                             @if ($ticket->status === 'Open')
-                                Status: <span class="label label-success">{{ $ticket->status }}</span>
-                            @else
+				<!-- Show the ticket status as green -->
+				Status: <span class="label label-success">{{ $ticket->status }}</span>
+			    @else
+				<!-- Show the ticket status as red -->
                                 Status: <span class="label label-danger">{{ $ticket->status }}</span>
                             @endif
                         </p>

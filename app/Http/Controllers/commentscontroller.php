@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
-	public function postComment(Request $request)
+	public function postComment(Request $request, AppMailer $mailer)
 	{
 		$this->validate($request, [
 			'comment' => 'required'
