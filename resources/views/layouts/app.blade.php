@@ -18,7 +18,6 @@
 
     <!-- Styles -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> 
-	<!--<link rel="stylesheet" href"{{asset('/css/style.css')}}" type='css/text'> -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -57,6 +56,7 @@
 			background-color: #fd1d1d;
 			border-color: #e21c1c;
 		}
+		
     </style>
 </head>
 <body>

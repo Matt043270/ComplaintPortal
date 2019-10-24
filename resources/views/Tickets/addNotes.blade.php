@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">Add reply</div>
+    <div class="panel-heading">Add notes</div>
  
         <div class="panel-body">
             <div class="comment-form">
