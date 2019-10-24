@@ -6,7 +6,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
  
-class AdminMiddleware
+class AgentMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,15 +17,15 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::check() || (Auth::check() && Auth::user()->role == 'Admin')) {
+        if(!Auth::check() || (Auth::check() && Auth::user()->role == 'Agent')) {
  
             return $next($request);
         }
-		elseif (Auth::check() || (Auth::check() && Auth::user()->role == 'Agent')) {
-			return redirect('/agent');
+		elseif (Auth::check() || (Auth::check() && Auth::user()->role == 'User')) {
+			return redirect('home');
 		}
 		else {
-			return redirect('home');
+			return redirect('/admin');
 		}
     }
 	

@@ -15,19 +15,18 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-ticket"> Complaints</i>
+                    <i class="fa fa-ticket"> Department Complaints</i>
                 </div>
  
                 <div class="panel-body">
                     @if ($tickets->isEmpty())
-                        <p>There are currently no complaints.</p>
+                        <p>This department currently has no complaints.</p>
                     @else
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Department</th>
+                                <th>Category</th>
                                 <th>Title</th>
-							
 								<th>Status</th>
 								<th>Priority</th>
 								<th> Created On </th>
@@ -38,27 +37,27 @@
                             @foreach ($tickets as $ticket)
 				<tr>
 					
-				<!-- Department -->
+				<!-- Category -->
 				<td>
 
                             <div class="col-md-15">
-                                <select id="department" type="department" class="form-control" name="department" onchange="changeDepartment('{{ $ticket->ticket_id }}', this.value)">
-                                    <option value="">{{$ticket->department->name}}</option>
-									@foreach ($departments as $department)
-										<option value="{{ $department->id }}">{{ $department->name }}</option>
+                                <select id="category" type="category" class="form-control" name="category" onchange="changeCategory('{{ $ticket->ticket_id }}', this.value)">
+                                    <option value="">{{$ticket->category->name}}</option>
+									@foreach ($categories as $category)
+										<option value="{{ $category->id }}">{{ $category->name }}</option>
 									@endforeach
                                 </select>
 
-                                @if ($errors->has('department'))
+                                @if ($errors->has('category'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('department') }}</strong>
+                                        <strong>{{ $errors->first('category') }}</strong>
                                     </span>
                                 @endif
                      </div>
                 </td>  
 				<script type="application/javascript">
-						function changeDepartment(ticket_id, department_id) {
-						const response = fetch('/admin/updateDepartment/' + ticket_id + '/' + department_id, {
+						function changeCategory(ticket_id, category_id) {
+						const response = fetch('/admin/updateCategory/' + ticket_id + '/' + category_id, {
 						
 						
 						//	headers: {

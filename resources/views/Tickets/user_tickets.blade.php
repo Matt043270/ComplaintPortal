@@ -21,6 +21,7 @@
                                     <th>Category</th>
                                     <th>Title</th>
                                     <th>Status</th>
+									<th>Created On</th>
                                     <th>Last Updated</th>
                                 </tr>
                             </thead>
@@ -42,6 +43,8 @@
                                                 <span class="label label-danger">{{ $ticket->status }}</span>
                                             @endif
                                         </td>
+										<td>
+										{{ $ticket->created_at }}
                                         <td>
                                             {{ $ticket->updated_at }}
                                         </td>

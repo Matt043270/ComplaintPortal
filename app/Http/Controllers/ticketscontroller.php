@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Department;
 use App\Ticket;
+use App\User;
+use App\Notes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mailers\AppMailer;
@@ -25,13 +28,36 @@ class TicketsController extends Controller
      		*/
     		public function index()
     		{
-			// Limit the display to 10 tickets a page
-			$tickets = Ticket::paginate(10);
-			$categories = Category::all();
+				// Limit the display to 10 tickets a page
+				$tickets = Ticket::paginate(10);
+				$departments = Department::all();
+				$categories = Category::all();
+				//$ticketOwner = User::where('id',Ticket->user_id);
 
-			return view('tickets.index', compact('tickets', 'categories'));
+				//return view('tickets.index', compact('tickets', 'categories', 'ticketOwner'));
+				return view('tickets.index', compact('tickets', 'departments', 'categories'));
     		}
+			
+			
+			public function agentTickets()
+			{
+				$tickets = Ticket::where('department_id', Auth::user()->dept_id)->paginate(10);
+				$departments = Department::where('department_id', Auth::user()->dept_id);
+				$categories = Category::all();
+				//$ticketOwner = User::where('id',Ticket->user_id);
 
+				//return view('tickets.index', compact('tickets', 'categories', 'ticketOwner'));
+				return view('tickets.agent', compact('tickets', 'departments', 'categories'));
+			}
+			
+			public function assignRoles()
+			{
+				$users = User::all();
+				$departments = Department::all();
+				$categories = Category::all();
+				
+				return view('tickets.assignRoles', compact('users','departments','categories'));
+			}
 
 
     		/**
@@ -41,9 +67,10 @@ class TicketsController extends Controller
      		*/
     		public function create()
     		{
+				$departments = Department::all();
 				$categories = Category::all();
 
-				return view('tickets.create', compact('categories'));
+				return view('tickets.create', compact('departments','categories'));
     		}
 			
 			
@@ -54,9 +81,11 @@ class TicketsController extends Controller
 			*/
 			public function createAnon()
 			{
+				$departments = Department::all();
 				$categories = Category::all();
 				
-				return view('tickets.create_anon', compact('categories'));
+				
+				return view('tickets.create_anon', compact('departments','categories'));
 			}
 
 	
@@ -77,8 +106,9 @@ class TicketsController extends Controller
 				$ticket = new Ticket([
 					'title'     => $request->input('title'),
 					'user_id'   => Auth::user()->id,
-					'ticket_id' => strtoupper(str_random(10)),
+					'department_id' => 0,
 					'category_id'  => 0,
+					'ticket_id' => strtoupper(str_random(10)),
 					'priority'  => "New Ticket",
 					'message'   => $request->input('message'),
 					'status'    => "Open"
@@ -102,8 +132,9 @@ class TicketsController extends Controller
 			$ticket = new Ticket([
 				'title'		=> $request->input('title'),
 				'user_id'	=> 0,
-				'ticket_id'	=> strtoupper(str_random(10)),
+				'department_id' => 0,
 				'category_id'	=> 0,
+				'ticket_id'	=> strtoupper(str_random(10)),
 				'priority'	=> "New Ticket",
 				'message'	=> $request->input('message'),
 				'status'	=> "Open"
@@ -113,6 +144,7 @@ class TicketsController extends Controller
 
 			return redirect()->back()->with("status", "Your anonymous complaint has been registered.");
 		}
+		
 
 	
 	
@@ -166,11 +198,20 @@ class TicketsController extends Controller
 		
 		public function updateCategory($ticket_id, $category_id)
 		{
-				$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+			$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
 				
-				$ticket->category_id = $category_id;
+			$ticket->category_id = $category_id;
 				
-				$ticket-> save();
+			$ticket-> save();
+		}
+		
+		public function updateDepartment($ticket_id, $department_id)
+		{
+			$ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+			
+			$ticket->department_id = $department_id;
+			
+			$ticket -> save();
 		}
 		
 		

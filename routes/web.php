@@ -36,16 +36,35 @@ Route::get('my_tickets', 'TicketsController@userTickets');
 Route::get('tickets/{ticket_id}', 'TicketsController@show');
  
 Route::post('comment', 'CommentsController@postComment');
+Route::post('notes', 'NotesController@postNote');
  
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function (){
 	 
-	    Route::get('tickets', 'TicketsController@index');
+	Route::get('tickets', 'TicketsController@index');
 	     
-	    Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
+	Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
 		
-		Route::post('updatePriority/{ticket_id}/{priority}', 'TicketsController@updatePriority');
+	Route::post('updatePriority/{ticket_id}/{priority}', 'TicketsController@updatePriority');
 	     
-		Route::post('updateCategory/{ticket_id}/{category_id}', 'TicketsController@updateCategory');
+	Route::post('updateDepartment/{ticket_id}/{department_id}', 'TicketsController@updateDepartment');
 		
-		Route::post('updateStatus/{ticket_id}/{status}', 'TicketsController@updateStatus');
+	Route::post('updateStatus/{ticket_id}/{status}', 'TicketsController@updateStatus');
+	
+	Route::get('roles','TicketsController@assignRoles');
+	Route::post('updateRole/{user_id}/{role}', 'TicketsController@updateRole');
+	Route::post('updateUserDepartment/{user_id}/{department_id}', 'TicketsController@updateUserDepartment');
+	
+});
+
+
+Route::group(['prefix' => 'agent', 'middleware' => 'agent'], function (){
+	
+	Route::get('tickets', 'TicketsController@agentTickets');
+	
+	Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
+	
+	Route::post('updatePriority/{ticket_id}/{priority}','TicketsController@updatePriority');
+	
+	Route::post('updateStatus/{ticket_id}/{status}','TicketsController@updateStatus');
+	
 });
