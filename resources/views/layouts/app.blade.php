@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> 
-<!--	<link rel="stylesheet" href"{{url('/css/style.css')}}" type='css/text'> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> 
+	<!--<link rel="stylesheet" href"{{asset('/css/style.css')}}" type='css/text'> -->
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -29,6 +29,34 @@
         .fa-btn {
             margin-right: 6px;
         }
+		.navbar-default {
+			background-color: #c00;
+			border-color: #e7e7e7;
+		}
+		.navbar-default .navbar-brand {
+			color: #fff;
+		}
+		.navbar-default .navbar-nav>li>a {
+			color: #fff;
+		}
+		@media (min-width: 768px) .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+			margin-left: 15px;
+		}
+		.panel-default>.panel-heading {
+			color: #fff;
+			background-color: #c00;
+			border-color: #ddd;
+		}
+		.btn-primary {
+			color: #fff;
+			background-color: #b73348;
+			border-color: #a00;
+		}
+		.btn-primary:hover {
+			color: #fff;
+			background-color: #fd1d1d;
+			border-color: #e21c1c;
+		}
     </style>
 </head>
 <body>
@@ -37,7 +65,7 @@
             <div class="container">
                 <div class="navbar-header">
 					
-	<!--				<a href="#" class="pull-left"> <img src="{{url('/images/murdoch_logo.jpg')}}" alt="Image"/></a> -->
+					<a href="#" class="pull-left"> <img src="{{url('/images/murdoch_logo.jpg')}}" alt="Image"/></a> 
 					
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
 						<span class="sr-only">Toggle Navigation</span>
